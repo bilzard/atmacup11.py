@@ -136,7 +136,7 @@ def train_epoch(
     model.train()
 
     t = tqdm(loader, bar_format='{l_bar}{bar:10}{r_bar}{bar:-10b}')
-    for i, image, label in enumerate(t):
+    for i, (image, label) in enumerate(t):
         image = image.to(args.device)
         label = label.to(args.device)
         batch_size = image.shape[0]
