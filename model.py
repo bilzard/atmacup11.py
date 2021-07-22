@@ -9,8 +9,8 @@ class AtmaModel(nn.Module):
     def __init__(
         self,
         backbone,
-        in_features: int=512,
-        hidden_dim: int=512,
+        in_features: int=384,
+        hidden_dim: int=384,
         out_dim: int=1
     ):
         super(AtmaModel, self).__init__()
