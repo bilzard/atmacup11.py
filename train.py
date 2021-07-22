@@ -159,7 +159,7 @@ def train_epoch(
 
     t.close()
     gc.collect()
-    return loss
+    return losses.avg
 
 
 def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
