@@ -15,12 +15,12 @@ from torch.utils import data
 from torch.optim import AdamW, lr_scheduler
 from tqdm.auto import tqdm
 
-from .dataset import AtmaDataset
-from .model import freeze_backbone_params
-from .model import create_model
-from .util import SimpleLogger
-from .util import AverageMeter
-from .util import seed_everything
+from dataset import AtmaDataset
+from model import freeze_backbone_params
+from model import create_model
+from util import SimpleLogger
+from util import AverageMeter
+from util import seed_everything
 
 parser = argparse.ArgumentParser(description='AtmaCup11 Training')
 parser.add_argument('--checkpoint', help='learning rate')
