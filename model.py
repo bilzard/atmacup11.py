@@ -30,6 +30,7 @@ class AtmaModel(nn.Module):
         x = self.l1(x)
         x = self.l2(x)
         x = self.l3(x)
+        x = x.view(x.size(0))
         return x
 
 
