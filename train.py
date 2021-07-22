@@ -6,7 +6,6 @@ import os
 
 import numpy as np
 import pandas as pd
-from PIL import Image
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import StratifiedGroupKFold
 import torch
@@ -107,7 +106,7 @@ def run_fold(
     for epoch in range(1, args.epochs):
         print(f'start {epoch}')
 
-        train_loss = train_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, train_logger, args)
+        train_loss = train_epoch(model, criterion, optimizer, scheduler, train_loader, epoch, train_logger, args)
         val_loss = valid_epoch(model, valid_loader, y_valid, criterion, epoch, valid_logger, args)
         valid_logger.add(val_loss)
 
