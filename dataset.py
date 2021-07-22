@@ -39,7 +39,7 @@ class AtmaDataset(data.Dataset):
         self.meta_df = meta_df.reset_index(drop=True)
         self.index_to_data = self.meta_df.to_dict(orient="index")
 
-        size = (Config.IMAGE_SIZE, Config.IMAGE_SIZE)
+        size = (224, 224)
 
         # only tiny perturbation
         additional_items = (
