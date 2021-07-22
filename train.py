@@ -165,7 +165,7 @@ def train_epoch(
 def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
     model.eval()
     losses = AverageMeter()
-    predicts = []
+    #predicts = []
     t = tqdm(loader)
 
     with torch.no_grad():
@@ -175,18 +175,19 @@ def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
             batch_size = label.shape[0]
 
             y_pred = model(image)
-            predicts.extend(y_pred.data.cpu().numpy())
+            #predicts.extend(y_pred.data.cpu().numpy())
 
             loss  = criterion(y_pred, label)
-            logger.add(loss.item())
+            losses.add(np.sqrt(loss.item()))
+            logger.add(np.sqrt(loss.item()))
             t.set_description(f"Valid Epoch {epoch} - Loss(RSME): {np.sqrt(losses.avg):0.4f}")
 
-        pred = np.array(predicts).reshape(-1)
-        score = calculate_metrics(y_valid, pred)
+        #pred = np.array(predicts).reshape(-1)
+        #score = calculate_metrics(y_valid, pred)
 
     t.close()
     gc.collect()
-    return score
+    return losses.avg
 
 
 def calculate_metrics(y_true, y_pred) -> dict:
