@@ -138,7 +138,7 @@ def train_epoch(
     t = tqdm(loader, bar_format='{l_bar}{bar:10}{r_bar}{bar:-10b}')
     for i, (image, label) in enumerate(t):
         image = image.to(args.device)
-        label = label.to(args.device)
+        label = label.to(args.device).float()
         batch_size = image.shape[0]
         optimizer.zero_grad()
 
@@ -171,7 +171,7 @@ def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
     with torch.no_grad():
         for i, (image, label) in enumerate(t):
             image = image.to(args.device)
-            label = label.to(args.device)
+            label = label.to(args.device).float()
             batch_size = label.shape[0]
 
             y_pred = model(image)
