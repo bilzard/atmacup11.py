@@ -104,7 +104,7 @@ def run_fold(
     valid_logger = SimpleLogger()
 
     best_score = 100
-    for epoch in range(1, args.epoghs):
+    for epoch in range(1, args.epochs):
         print(f'start {epoch}')
 
         train_loss = train_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, train_logger)
