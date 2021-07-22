@@ -32,15 +32,12 @@ parser.add_argument('--batch_size', default=256, help='batch size')
 parser.add_argument('--epochs', default=100, help='epochs')
 parser.add_argument('--display_epochs', default=10, help='epochs to display graph')
 parser.add_argument('--folds', default=5, help='number of cv folds')
-parser.add_argument('--data_source_path', help='data source path')
 parser.add_argument('--arch', default='vit_small', help='vit architecture')
 parser.add_argument('--patch_size', default=16, help='vit patch size')
 
 
 def main():
     args = parser.parse_args()
-
-    setup_data(args.data_source_path)
     
     train_df = pd.read_csv('train.csv')
 
@@ -196,15 +193,6 @@ def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
 def calculate_metrics(y_true, y_pred) -> dict:
     """正解ラベルと予測ラベルから指標を計算する"""    
     return mean_squared_error(y_true, y_pred) ** .5
-
-
-def setup_data(data_source_path):
-    if not os.path.isfile('dataset_atmaCup11.zip'):
-        ! cp {data_source_path}/dataset_atmaCup11.zip .
-    if not os.path.isfile('photos.zip'):
-        ! unzip -q dataset_atmaCup11.zip
-    if not os.path.isdir('photos'):
-        ! unzip -q photos.zip -d photos
 
 
 def create_metadata(input_df):
