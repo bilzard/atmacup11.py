@@ -81,11 +81,11 @@ def run_fold(
     """
 
     train_dataset = AtmaDataset(meta_df=train_df)
-    train_loader = data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, drop_last=True)
+    train_loader = data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, drop_last=True, pin_memory=True)
 
     # 検証用の方は is_train=False にしてデータ拡張オフにする
     valid_dataset = AtmaDataset(meta_df=valid_df, is_train=False)
-    valid_loader = data.DataLoader(valid_dataset, batch_size=args.batch_size * 4)
+    valid_loader = data.DataLoader(valid_dataset, batch_size=args.batch_size * 4, pin_memory=True)
 
     criterion = nn.MSELoss()
 
