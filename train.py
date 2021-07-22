@@ -107,8 +107,8 @@ def run_fold(
     for epoch in range(1, args.epochs):
         print(f'start {epoch}')
 
-        train_loss = train_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, train_logger)
-        val_loss = valid_epoch(model, valid_loader, y_valid, criterion, epoch, valid_logger)
+        train_loss = train_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, train_logger, args)
+        val_loss = valid_epoch(model, valid_loader, y_valid, criterion, epoch, valid_logger, args)
         valid_logger.add(val_loss)
 
         content = f"""
