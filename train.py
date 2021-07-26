@@ -22,7 +22,7 @@ from util import AverageMeter
 from util import seed_everything
 
 parser = argparse.ArgumentParser(description='AtmaCup11 Training')
-parser.add_argument('--checkpoint', 'checkpoint.pth', help='learning rate')
+parser.add_argument('--checkpoint', default='checkpoint.pth', help='learning rate')
 parser.add_argument('--lr', default=1e-3, help='learning rate')
 parser.add_argument('--wd', default=1e-2, help='weight decay')
 parser.add_argument('--seed', default=2929, help='random seed')
