@@ -176,7 +176,7 @@ def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
             #predicts.extend(y_pred.data.cpu().numpy())
 
             loss  = criterion(y_pred, label)
-            losses.add(np.sqrt(loss.item()))
+            losses.update(np.sqrt(loss.item()))
             logger.add(np.sqrt(loss.item()))
             t.set_description(f"Valid Epoch {epoch} - Loss(RSME): {np.sqrt(losses.avg):0.4f}")
 
