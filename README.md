@@ -1,6 +1,6 @@
 # atmacup11.py
 
-Code repository of AtmaCup #11.
+Code repository of [AtmaCup #11](https://www.guruguru.science/competitions/17).
 
 ## Install
 
