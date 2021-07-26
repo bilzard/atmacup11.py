@@ -110,7 +110,7 @@ def run_fold(
 
         content = f"""
                 Fold:{fold}, Epoch:{epoch}, {optimizer.param_groups[0]['lr']:.7}\n
-                Train Loss(RMSE):{np.sqrt(train_loss):0.4f}\n
+                Train Loss(RMSE):{train_loss:0.4f}\n
                 Valid Loss(RMSE):{val_loss:0.4f}\n
         """
         print(content)
