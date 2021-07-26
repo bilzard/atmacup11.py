@@ -13,10 +13,10 @@ git clone --recursive https://github.com/bilzard/atmacup11.py.git
 * copy pre-trained checkpoint 'checkpoint0260.pth'
 * copy atmacup11 dataset
 
-Example code in `example` directory may be helpful.
-
 ## Excecute Train
 
 ```
-! python atmacup11.py/train.py --checkpoint='checkpoint0260.pth'
+PYTHONPATH=./atmacup11.py/dino python atmacup11.py/train.py --checkpoint='checkpoint0260.pth'
 ```
+
+Maybe example code in `example` directory is helpful.
