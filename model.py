@@ -4,10 +4,6 @@ import sys
 import torch
 from torch import nn
 
-path = 'dino'
-if path not in sys.path:
-    sys.path.append(path)
-
 import dino.vision_transformer as vits
 
 
