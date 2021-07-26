@@ -109,7 +109,7 @@ def run_fold(
         valid_logger.add(val_loss)
 
         content = f"""
-                Fold:{fold}, Epoch:{epoch}, {optimizer.param_groups[0]['lr']:.7}\n
+                Fold:{fold}, Epoch:{epoch}, lr:{optimizer.param_groups[0]['lr']:.7}\n
                 Train Loss(RMSE):{train_loss:0.4f}\n
                 Valid Loss(RMSE):{val_loss:0.4f}\n
         """
