@@ -149,21 +149,20 @@ def train_epoch(
         losses.update(loss.item(), batch_size)
 
         # display
-        avg_loss = np.sqrt(losses.avg) # RSME
-        t.set_description(f"Train E: {epoch} - Upstream Loss: {losses.avg:0.4f}")
+        t.set_description(f"Train E: {epoch} - Loss: {np.sqrt(losses.avg):0.4f}")
 
         # log
-        logger.add(loss.item())
+        logger.add(np.sqrt(loss.item()))
 
     t.close()
     gc.collect()
-    return losses.avg
+    return np.sqrt(losses.avg)
 
 
 def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
     model.eval()
     losses = AverageMeter()
-    #predicts = []
+    predicts = []
     t = tqdm(loader)
 
     with torch.no_grad():
@@ -173,19 +172,18 @@ def valid_epoch(model, loader, y_valid, criterion, epoch, logger, args):
             batch_size = label.shape[0]
 
             y_pred = model(image)
-            #predicts.extend(y_pred.data.cpu().numpy())
+            predicts.extend(y_pred.data.cpu().numpy())
 
             loss  = criterion(y_pred, label)
-            losses.update(np.sqrt(loss.item()))
-            logger.add(np.sqrt(loss.item()))
-            t.set_description(f"Valid Epoch {epoch} - Loss(RSME): {np.sqrt(losses.avg):0.4f}")
+            losses.update(loss.item())
+            t.set_description(f"Valid Epoch {epoch} - Loss: {np.sqrt(losses.avg):0.4f}")
 
-        #pred = np.array(predicts).reshape(-1)
-        #score = calculate_metrics(y_valid, pred)
+        pred = np.array(predicts).reshape(-1)
+        score = calculate_metrics(y_valid, pred)
 
     t.close()
     gc.collect()
-    return losses.avg
+    return score
 
 
 def calculate_metrics(y_true, y_pred) -> dict:
