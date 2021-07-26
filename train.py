@@ -120,7 +120,7 @@ def run_fold(
             best_score = val_loss
             torch.save(model, f'best_model_{fold}.pt')
 
-        if epoch % args.display_epoch == args.display_epoch - 1:
+        if epoch % args.display_epochs == args.display_epochs - 1:
             train_logger.plot('Train Loss', file_name=f'train_log_fold{fold}.png')
             valid_logger.plot('Valid Loss', file_name=f'valid_log_fold{fold}.png')
 
